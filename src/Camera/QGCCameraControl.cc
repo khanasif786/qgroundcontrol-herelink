@@ -2396,7 +2396,7 @@ QGCCameraControl::startTracking(QRectF rec)
                                   << static_cast<float>(rec.x() + rec.width()) << ", "
                                   << static_cast<float>(rec.y() + rec.height()) << "]";
 
-        _vehicle->sendMavCommand(0,
+        _vehicle->sendMavCommand(1,
                                  MAV_CMD_CAMERA_TRACK_RECTANGLE,
                                  true,
                                  static_cast<float>(rec.x()),
@@ -2419,7 +2419,7 @@ QGCCameraControl::startTracking(QPointF point, double radius)
                                   << static_cast<float>(point.y()) << "], Radius:  "
                                   << static_cast<float>(radius);
 
-        _vehicle->sendMavCommand(0,
+        _vehicle->sendMavCommand(1,
                                  MAV_CMD_CAMERA_TRACK_POINT,
                                  true,
                                  static_cast<float>(point.x()),
@@ -2435,12 +2435,12 @@ QGCCameraControl::stopTracking()
     qCDebug(CameraControlLog) << "Stop Tracking";
 
     //-- Stop Tracking
-    _vehicle->sendMavCommand(0,
+    _vehicle->sendMavCommand(1,
                              MAV_CMD_CAMERA_STOP_TRACKING,
                              true);
 
     //-- Stop Sending Tracking Status
-    _vehicle->sendMavCommand(0,
+    _vehicle->sendMavCommand(1,
                              MAV_CMD_SET_MESSAGE_INTERVAL,
                              true,
                              MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS,
@@ -2454,7 +2454,7 @@ QGCCameraControl::stopTracking()
 void
 QGCCameraControl::_requestTrackingStatus()
 {
-    _vehicle->sendMavCommand(0,
+    _vehicle->sendMavCommand(1,
                              MAV_CMD_SET_MESSAGE_INTERVAL,
                              true,
                              MAVLINK_MSG_ID_CAMERA_TRACKING_IMAGE_STATUS,
