@@ -293,7 +293,7 @@ Rectangle {
             radius:             width * 0.5
             border.color:       qgcPal.buttonText
             border.width:       3
-            visible:            _mavlinkCamera && _mavlinkCamera.hasTracking
+            visible:            true
             QGCColoredImage {
                 height:             parent.height * 0.5
                 width:              height
@@ -305,10 +305,10 @@ Rectangle {
                 MouseArea {
                     anchors.fill:   parent
                     onClicked: {
-                        _mavlinkCamera.trackingEnabled = !_mavlinkCamera.trackingEnabled;
-                        if(!_mavlinkCamera.trackingEnabled) {
-                            !_mavlinkCamera.stopTracking()
-                        }
+                        _mavlinkCamera.trackingEnabled = true
+                        //if(!_mavlinkCamera.trackingEnabled) {
+                        //    !_mavlinkCamera.stopTracking()
+                        //}
                     }
                 }
             }
